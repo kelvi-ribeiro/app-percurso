@@ -16,4 +16,12 @@ export class ConfiguracaoJogoService {
       responseType: "text"
     });
   }
+  cadastrarTema(obj) {
+    console.log('cadastrarConfiguracoesGerais',obj);
+
+    return this.http.post(`${API_CONFIG.baseUrl}/programa/tema`, obj, {
+      observe: "response",
+      responseType: "text"
+    });
+  }
 }

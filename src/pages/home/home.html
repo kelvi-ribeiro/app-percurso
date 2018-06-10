@@ -5,34 +5,9 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Bem-Vindo Ao Gerador De Jogo de Percursos</h2>
-  <h3>Preencha o Formulário de Configurações Gerais</h3>
+  <h2>Bem-Vindo(a) Ao Gerador De Jogo de Percursos</h2>
+  <button ion-button block color="secondary" [navPush]="'FormTemaPage'" type="button" >Escolher Tema</button>
+  <button ion-button block color="primary" [navPush]="'FormConfiguracaoJogoPage'" type="button" >Definir Configurações do Jogo</button>
 
-  <form [formGroup]="formGroup" (ngSubmit)="enviarConfiguracao(); $event.preventDefault()">
-    <ion-item>
-      <ion-label floating>Cor do Tabuleiro*</ion-label>
-      <ion-select formControlName="coresTabuleiro">
-        <ion-option *ngFor="let cor of cores" [value]="cor.valor">{{cor.cor}}</ion-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item *ngFor="let number of quantidadePerguntaAvatar; let i = index;">
-            <ion-label  floating>Cor do Avatar {{i + 1}}</ion-label>
-            <ion-select    (ionChange)="inserirCor($event)"  >
-              <ion-option    *ngFor="let cor of cores" [value]="cor.valor">{{cor.cor}}</ion-option>
-            </ion-select>
-
-      </ion-item>
-
-      <button ion-button block color="secondary" type="button" (click)="adicionarCorAvatar()">Adicionar Outra cor </button>
-
-
-      <ion-item *ngFor="let number of quantidadeMensagem; let i = index;">
-          <ion-label floating>Mensagem Da Ultima Casa {{i + 1}}</ion-label>
-          <ion-input (blur)="inserirMensagem($event.target.value)" formControlName="mensagensUltimaCasa" type="text"></ion-input>
-        </ion-item>
-        <button ion-button block color="secondary" type="button" [disabled]="!formGroup.controls.mensagensUltimaCasa.touched" (click)="adicionarMensagem()">Adicionar outra Mensagem</button>
-    <button ion-button block color="primary" type="submit" >Confirmar Configurações</button>
-  </form>
 
 </ion-content>
