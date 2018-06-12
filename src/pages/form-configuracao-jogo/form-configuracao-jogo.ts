@@ -30,20 +30,6 @@ export class FormConfiguracaoJogoPage {
     public alertCtrl:AlertController,
     public configuracaoJogoService:ConfiguracaoJogoService
   ) {
-    this.cores = [
-      {
-        valor:0,
-        cor:'Azul'
-      },
-      {
-        valor:1,
-        cor:'Amarelo'
-      },
-      {
-        valor:2,
-        cor:'Preto'
-      }
-    ];
     this.quantidadePerguntaAvatar = [
       {
       }
@@ -57,6 +43,13 @@ export class FormConfiguracaoJogoPage {
       coresAvatar: [[], [Validators.required]],
       mensagensUltimaCasa: [[], [Validators.required]]
     });
+  }
+  ionViewDidLoad(){
+      this.configuracaoJogoService.obterCores().subscribe(res=>{
+        this.cores = res;
+        console.log('cores',this.cores) 
+       
+      })
   }
 
   adicionarCorAvatar(){
