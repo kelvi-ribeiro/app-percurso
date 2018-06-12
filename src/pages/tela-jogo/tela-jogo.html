@@ -1,0 +1,81 @@
+<!--
+  Generated template for the TelaJogoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Jogo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form *ngIf="!jogoIniciou" [formGroup]="formGroup" (ngSubmit)="iniciarJogo(); $event.preventDefault()">
+
+      <ion-item>
+          <ion-label floating>Nome Do Jogo</ion-label>
+          <ion-input formControlName="nome" type="text"></ion-input>
+        </ion-item>
+
+    <ion-item>
+      <ion-label floating>Quantidade de Casa</ion-label>
+      <ion-input formControlName="quantidadeCasas" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Quantidade de Jogador</ion-label>
+      <ion-input formControlName="quantidadeJogador" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Escolha o Tema</ion-label>
+      <ion-input formControlName="tema" type="number"></ion-input>
+    </ion-item>
+    <button ion-button block type="submit" color="secondary" [disabled]="formGroup.invalid">Iniciar Jogo</button>
+  </form>
+
+  <div *ngIf="jogoIniciou">
+    <h1 style="text-align:center;">{{configuracaoInicialJogo?.tema.nome}}</h1>
+    <table border="2">
+      <tr ><td *ngFor="let casa of configuracaoInicialJogo.casa" class="td-casa" [ngClass]="{'td-casa-bonus':casa.bonus}"
+        style="width: 100px;height: 100px; color:white;font-size: 20px; text-align:center;">{{casa.numero}}</td></tr>
+
+    </table>
+    <ion-card *ngFor="let pergunta of perguntas;" style="text-align: center">
+        <ion-card-content>
+          <ion-card-title >
+            {{pergunta.enunciado }}
+          </ion-card-title>
+              <div *ngIf="pergunta.dificuldade=='FACIL'">
+                  Dificuldade:   <ion-icon ios="ios-star" md="md-star"></ion-icon>
+              </div>
+
+              <div *ngIf="pergunta.dificuldade=='MEDIO'">
+                  Dificuldade:   <ion-icon ios="ios-star" md="md-star"></ion-icon>
+                  <ion-icon ios="ios-star" md="md-star"></ion-icon>
+              </div>
+
+
+              <div *ngIf="pergunta.dificuldade=='DIFICIL'">
+                  Dificuldade:  <ion-icon ios="ios-star" md="md-star"></ion-icon>
+                    <ion-icon ios="ios-star" md="md-star"></ion-icon>
+                    <ion-icon ios="ios-star" md="md-star"></ion-icon>
+                </div>
+
+          <ion-item text-center>
+
+            <ion-select style="margin-left:35%; " >
+              <ion-option *ngFor="let opcao of pergunta.opcoes; first as f" [value]="opcao.respostaCerta" [selected]="f">{{opcao.resposta}}</ion-option>
+            </ion-select>
+          </ion-item>
+          </ion-card-content>
+      </ion-card>
+
+
+  </div>
+
+</ion-content>
