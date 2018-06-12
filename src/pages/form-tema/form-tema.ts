@@ -18,6 +18,7 @@ import { ConfiguracaoJogoService } from '../../services/domain/configuracao-jogo
 })
 export class FormTemaPage {
   formGroup: FormGroup;
+  temas = [];
 
   constructor(
     public navCtrl: NavController,
@@ -31,6 +32,13 @@ export class FormTemaPage {
 
 
     });
+  }
+  ionViewDidLoad(){
+    this.configuracaoJogoService.obterTemas().subscribe(res=>{
+      this.temas = res;
+      console.log('temas',this.temas);
+
+    })
   }
 
   definifirTema(){
