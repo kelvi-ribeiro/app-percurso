@@ -16,6 +16,7 @@ import { ConfiguracaoJogoService } from '../../services/domain/configuracao-jogo
   templateUrl: 'tela-jogo.html',
 })
 export class TelaJogoPage {
+  temas: any;
   respostaTransformadaJson: any;
   formGroup: FormGroup;
   configuracaoInicialJogo;
@@ -42,14 +43,15 @@ export class TelaJogoPage {
   }
 
   ionViewDidLoad() {
-
+    this.carregarTemas()
   }
   iniciarJogo(){
     this.configuracaoJogoService.iniciarJogo(this.formGroup.value).subscribe((res)=>{
       this.respostaTransformadaJson = JSON.parse(res.body);
+      console.log(this.respostaTransformadaJson)
       this.configuracaoInicialJogo = this.respostaTransformadaJson[0];
       this.configuracaoCores = this.respostaTransformadaJson[1];
-      this.perguntas = this.respostaTransformadaJson[3];
+      this.perguntas = this.respostaTransformadaJson[0].questoes;
 
       console.log('this.configuracaoInicialJogo',this.configuracaoInicialJogo);
 
@@ -71,6 +73,12 @@ export class TelaJogoPage {
       loading.dismiss();
       this.jogoIniciou = true
     }, 3000);
+  }
+  carregarTemas() {
+    this.configuracaoJogoService.obterTemas().subscribe(res => {
+      this.temas = res;
+      console.log(this.temas);
+    });
   }
 
 }

@@ -9,14 +9,14 @@
       <ion-item>
         <ion-label floating>Cor do Tabuleiro*</ion-label>
         <ion-select formControlName="coresTabuleiro">
-          <ion-option *ngFor="let cor of cores" [value]="cor">{{cor}}</ion-option>
+          <ion-option *ngFor="let cor of cores" [value]="cor.id">{{cor?.cor}}</ion-option>
         </ion-select>
       </ion-item>
 
       <ion-item *ngFor="let number of quantidadePerguntaAvatar; let i = index;">
               <ion-label  floating>Cor do Avatar {{i + 1}}</ion-label>
               <ion-select    (ionChange)="inserirCor($event)"  >
-                <ion-option    *ngFor="let cor of cores" [value]="cor">{{cor}}</ion-option>
+                <ion-option    *ngFor="let cor of cores" [value]="cor.id">{{cor?.cor}}</ion-option>
               </ion-select>
 
         </ion-item>

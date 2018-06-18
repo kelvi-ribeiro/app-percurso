@@ -32,14 +32,17 @@
     </ion-item>
 
     <ion-item>
-      <ion-label floating>Escolha o Tema</ion-label>
-      <ion-input formControlName="tema" type="number"></ion-input>
+      <ion-label floating>Tema da Questão</ion-label>
+      <ion-select formControlName="tema">
+        <ion-option *ngFor="let tema of temas" [value]="tema.id">{{tema.nome}}</ion-option>
+      </ion-select>
     </ion-item>
     <button ion-button block type="submit" color="secondary" [disabled]="formGroup.invalid">Iniciar Jogo</button>
   </form>
 
   <div *ngIf="jogoIniciou">
-    <h1 style="text-align:center;">{{configuracaoInicialJogo?.tema.nome}}</h1>
+    <h1 style="text-align:center;">Jogo:{{configuracaoInicialJogo?.nome}}</h1>
+    <h2 style="text-align:center;">Tema:{{configuracaoInicialJogo.tema.nome}}</h2>
     <table border="2">
       <tr ><td *ngFor="let casa of configuracaoInicialJogo.casa" class="td-casa" [ngClass]="{'td-casa-bonus':casa.bonus}"
         style="width: 100px;height: 100px; color:white;font-size: 20px; text-align:center;">{{casa.numero}}</td></tr>

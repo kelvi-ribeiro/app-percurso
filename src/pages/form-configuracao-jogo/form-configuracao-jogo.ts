@@ -46,9 +46,15 @@ export class FormConfiguracaoJogoPage {
   }
   ionViewDidLoad(){
       this.configuracaoJogoService.obterCores().subscribe(res=>{
-        this.cores = res;
-        console.log('cores',this.cores) 
-       
+        let coresTratadas = []
+        let i = 0
+        res.forEach(element => {
+          coresTratadas.push({id:i,cor:element})
+          i++;
+        });
+        this.cores = coresTratadas
+        console.log(this.cores)
+
       })
   }
 
