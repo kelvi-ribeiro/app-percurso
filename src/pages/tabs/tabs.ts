@@ -10,6 +10,7 @@ import { HomePage } from '../home/home';
 export class TabsPage {
 
   tab1Root = HomePage;
+  tab2Root = 'DesenvolvedoresPage';
 
   constructor() {
 
