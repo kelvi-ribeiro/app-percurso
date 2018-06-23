@@ -1,7 +1,8 @@
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ConfiguracaoJogoService } from "./../../services/domain/configuracao-jogo.service";
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { IonicPage, NavController, NavParams, AlertController } from "ionic-angular";
+import { HomePage } from "../home/home";
 
 /**
  * Generated class for the FormQuestoesJogoPage page.
@@ -25,7 +26,8 @@ export class FormQuestoesJogoPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
-    public configuracaoJogoService: ConfiguracaoJogoService
+    public configuracaoJogoService: ConfiguracaoJogoService,
+    public alertCtrl:AlertController
   ) {
     this.formGroup = this.formBuilder.group({
       dificuldade: [null, [Validators.required]],
@@ -71,12 +73,28 @@ export class FormQuestoesJogoPage {
     console.log(this.formGroup.value.opcoes);
     console.log(this.formGroup.value);
     this.configuracaoJogoService.cadastrarQuestao(this.formGroup.value).subscribe(res =>{
-      console.log('res',res);
+      this.alertSucessoCadastro()
 
     })
 
   }
   adicionarResposta() {
     this.quantidadeResposta.push({});
+  }
+  alertSucessoCadastro(){
+    let alert = this.alertCtrl.create({
+      title:'Sucesso!',
+      message:'Questões definidas!',
+      enableBackdropDismiss:false,
+      buttons:[
+        {
+          text:'Ok',
+          handler:() =>{
+            this.navCtrl.setRoot(HomePage);
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 }
