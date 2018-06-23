@@ -1,6 +1,6 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController,AlertController } from 'ionic-angular';
 import { ConfiguracaoJogoService } from '../../services/domain/configuracao-jogo.service';
 
 /**
@@ -29,7 +29,8 @@ export class TelaJogoPage {
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public configuracaoJogoService:ConfiguracaoJogoService,
-    public loadingCtrl:LoadingController
+    public loadingCtrl:LoadingController,
+    public alertCtrl:AlertController
   ) {
 
     this.formGroup = this.formBuilder.group({
@@ -72,13 +73,30 @@ export class TelaJogoPage {
     setTimeout(() => {
       loading.dismiss();
       this.jogoIniciou = true
-    }, 3000);
+    }, 1500);
   }
   carregarTemas() {
     this.configuracaoJogoService.obterTemas().subscribe(res => {
       this.temas = res;
       console.log(this.temas);
     });
+  }
+  showBonus(bonus){
+    if(bonus){
+      this.alertSucessoCadastro()
+    }
+  }
+  alertSucessoCadastro(){
+    let alert = this.alertCtrl.create({
+      title:'Casa Bônus, Aproveite!',
+      buttons:[
+        {
+          text:'Ok'
+        }
+      ]
+    });
+
+    alert.present();
   }
 
 }

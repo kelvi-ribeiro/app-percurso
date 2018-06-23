@@ -43,11 +43,13 @@
   <div *ngIf="jogoIniciou">
     <h1 style="text-align:center;">Jogo:{{configuracaoInicialJogo?.nome}}</h1>
     <h2 style="text-align:center;">Tema:{{configuracaoInicialJogo.tema.nome}}</h2>
-    <table border="2">
-      <tr ><td *ngFor="let casa of configuracaoInicialJogo.casa" class="td-casa" [ngClass]="{'td-casa-bonus':casa.bonus}"
-        style="width: 100px;height: 100px; color:white;font-size: 20px; text-align:center;">{{casa.numero}}</td></tr>
+      <ion-row>
+        <table style="width: 100%; height: 25%;" border="2">
+          <tr (click)="showBonus(casa.bonus)"  *ngFor="let casa of configuracaoInicialJogo.casa" class="tr-casa" [ngClass]="{'tr-casa-bonus':casa.bonus}"
+          style="height: 80px;  color:white;font-size: 20px; text-align:center;"><h2 style="margin-top:8%;">{{casa.numero}}</h2></tr>
+          </table>
+        </ion-row>
 
-    </table>
     <ion-card *ngFor="let pergunta of perguntas;" style="text-align: center">
         <ion-card-content>
           <ion-card-title >
