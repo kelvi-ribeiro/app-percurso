@@ -16,6 +16,7 @@ import { ConfiguracaoJogoService } from '../../services/domain/configuracao-jogo
   templateUrl: 'tela-jogo.html',
 })
 export class TelaJogoPage {
+  mensagensUltimaCasa: any;
   temas: any;
   respostaTransformadaJson: any;
   formGroup: FormGroup;
@@ -53,6 +54,8 @@ export class TelaJogoPage {
       this.configuracaoInicialJogo = this.respostaTransformadaJson[0];
       this.configuracaoCores = this.respostaTransformadaJson[1];
       this.perguntas = this.respostaTransformadaJson[0].questoes;
+      this.mensagensUltimaCasa = this.respostaTransformadaJson[1].mensagensUltimaCasa
+
 
       console.log('this.configuracaoInicialJogo',this.configuracaoInicialJogo);
 

@@ -1,5 +1,5 @@
 export const API_CONFIG = {
-  baseUrl: "http://localhost:8080/programa",
+  baseUrl: "https://e583f09d.ngrok.io/programa",
 
 }
 
